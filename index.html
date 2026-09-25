@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ASTRELIA — Elegancia que trasciende</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #090909;
+      color: #f5f2ed;
+      line-height: 1.5;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      background: rgba(9, 9, 9, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #262626;
+    }
+    .nav-inner {
+      max-width: 1180px;
+      margin: auto;
+      padding: 18px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      letter-spacing: 7px;
+      font-size: 20px;
+      font-weight: 600;
+    }
+    .star { font-size: 18px; margin-right: 8px; }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      font-size: 13px;
+      color: #c8c2ba;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 25px 80px;
+      background: radial-gradient(circle at center, rgba(116, 91, 45, 0.20) 0%, rgba(20, 17, 13, 0.65) 35%, #050505 75%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border: 1px solid rgba(183, 151, 91, 0.12);
+      border-radius: 50%;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 750px;
+    }
+    .hero-star {
+      font-size: 32px;
+      color: #c9a96e;
+      margin-bottom: 25px;
+    }
+    .hero-small {
+      font-size: 11px;
+      letter-spacing: 6px;
+      color: #b99a63;
+      margin-bottom: 25px;
+    }
+    .hero h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(60px, 11vw, 125px);
+      font-weight: 400;
+      letter-spacing: 15px;
+      margin: 0;
+      color: #f5f1ea;
+    }
+    .hero-line {
+      width: 70px;
+      height: 1px;
+      background: #b99a63;
+      margin: 28px auto;
+    }
+    .hero-slogan {
+      font-family: Georgia, serif;
+      font-size: 24px;
+      font-style: italic;
+      color: #d4c5ad;
+      margin-bottom: 15px;
+    }
+    .hero-description {
+      max-width: 500px;
+      margin: 0 auto;
+      color: #9d9992;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+    .hero-button {
+      display: inline-block;
+      margin-top: 35px;
+      padding: 16px 32px;
+      border: 1px solid #b99a63;
+      color: #eee7dc;
+      font-size: 11px;
+      letter-spacing: 2px;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+    }
+    .hero-button:hover {
+      background: #b99a63;
+      color: #080808;
+    }
+
+    .section {
+      max-width: 1180px;
+      margin: auto;
+      padding: 90px 28px;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .section-subtitle {
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: #a58b5e;
+      text-transform: uppercase;
+    }
+    .section-header h2 {
+      font-family: Georgia, serif;
+      font-size: 40px;
+      font-weight: 400;
+      margin-top: 10px;
+    }
+    .section-description {
+      color: #b7b0a7;
+      margin-top: 12px;
+      font-size: 15px;
+    }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 22px;
+    }
+    .product-card {
+      background: #111;
+      border: 1px solid #27231e;
+      overflow: hidden;
+    }
+    .product-image {
+      position: relative;
+      height: 320px;
+      background: linear-gradient(145deg,#1a1815,#0c0c0c);
+      overflow: hidden;
+    }
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .product-tag {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      z-index: 2;
+      padding: 7px 10px;
+      background: rgba(201, 169, 110, 0.18);
+      color: #eed7a0;
+      border: 1px solid rgba(201, 169, 110, 0.45);
+      font-size: 10px;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+    .quick-view {
+      position: absolute;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      padding: 10px 16px;
+      border: 1px solid rgba(255,255,255,0.25);
+      background: rgba(0, 0, 0, 0.32);
+      color: #f8f4ef;
+      font-size: 10px;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    .product-info {
+      padding: 22px;
+    }
+    .product-category {
+      color: #b99a63;
+      letter-spacing: 2px;
+      font-size: 11px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .product-info h3 {
+      font-family: Georgia, serif;
+      font-size: 22px;
+      font-weight: 400;
+      margin-bottom: 6px;
+    }
+    .product-price {
+      color: #d1b982;
+      font-size: 14px;
+      margin-top: 6px;
+    }
+    .products-button {
+      text-align: center;
+      margin-top: 34px;
+    }
+    .view-all {
+      display: inline-block;
+      padding: 14px 28px;
+      border: 1px solid #a58b5e;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .story {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .story-art {
+      min-height: 390px;
+      display: grid;
+      place-items: center;
+      border: 1px solid #29251f;
+      background: radial-gradient(circle,#282016,#0d0d0d 65%);
+      overflow: hidden;
+    }
+    .story-art img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .big-star {
+      font-size: 120px;
+      color: #c6a86b;
+    }
+    .story h2 {
+      font-family: Georgia, serif;
+      font-weight: 400;
+      font-size: 42px;
+      margin: 12px 0 20px;
+    }
+    .story p {
+      color: #b6b0a8;
+      max-width: 520px;
+      line-height: 1.8;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .feature {
+      padding: 28px;
+      border-top: 1px solid #3a3329;
+      text-align: center;
+      background: rgba(255,255,255,0.01);
+    }
+    .feature strong {
+      display: block;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+    .feature span {
+      font-size: 13px;
+      color: #aaa39a;
+    }
+
+    .banner {
+      margin: 0 28px 90px;
+      padding: 65px 30px;
+      text-align: center;
+      border: 1px solid #332c22;
+      background: linear-gradient(120deg,#17130e,#0c0c0c);
+    }
+    .banner h2 {
+      font-family: Georgia, serif;
+      font-size: 38px;
+      font-weight: 400;
+    }
+    .banner p {
+      color: #aaa39a;
+      margin: 10px 0 24px;
+    }
+    .cta {
+      display: inline-block;
+      margin-top: 34px;
+      padding: 14px 28px;
+      border: 1px solid #a58b5e;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    footer {
+      border-top: 1px solid #242424;
+      padding: 45px 28px;
+      text-align: center;
+      color: #888;
+      font-size: 12px;
+    }
+    footer b {
+      color: #ddd;
+      letter-spacing: 4px;
+    }
+    .social-links {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid rgba(217, 198, 157, 0.5);
+      background: rgba(255,255,255,0.02);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .social-links a:hover {
+      transform: translateY(-2px);
+      border-color: rgba(217, 198, 157, 0.9);
+    }
+    .social-links svg {
+      width: 18px;
+      height: 18px;
+      fill: #d9c69d;
+    }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .products-grid, .story, .features { grid-template-columns: 1fr 1fr; }
+      .story { grid-template-columns: 1fr; }
+      .hero h1 { letter-spacing: 7px; }
+      .section { padding: 65px 20px; }
+      .product-image { height: 250px; }
+    }
+
+    @media (max-width: 620px) {
+      .products-grid, .features { grid-template-columns: 1fr; }
+      .hero h1 { letter-spacing: 4px; }
+      .banner { margin: 0 18px 70px; }
+      .product-image { height: 220px; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-inner">
+      <div class="logo"><span class="star">✦</span>ASTRELIA</div>
+      <div class="nav-links">
+        <a href="#cadenas">Cadenas</a>
+        <a href="#dijes">Dijes</a>
+        <a href="#manillas">Manillas</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero" id="inicio">
+    <div class="hero-content">
+      <div class="hero-star">✦</div>
+      <p class="hero-small">JOYERÍA · ASTRELIA</p>
+      <h1>ASTRELIA</h1>
+      <div class="hero-line"></div>
+      <p class="hero-slogan">Elegancia que trasciende.</p>
+      <p class="hero-description">
+        Joyas creadas para acompañar tu historia, expresar tu esencia y hacerte brillar.
+      </p>
+      <a class="hero-button" href="#cadenas">Descubrir colección</a>
+    </div>
+  </header>
+
+  <section class="section" id="cadenas">
+    <div class="section-header">
+      <p class="section-subtitle">ASTRELIA</p>
+      <h2>Nuestros favoritos</h2>
+      <p class="section-description">Descubre algunas de las piezas que hacen parte de nuestra colección.</p>
+    </div>
+
+    <div class="products-grid">
+      <article class="product-card">
+        <div class="product-image">
+          <span class="product-tag">Nuevo</span>
+          <img src="images/producto1.jpg" alt="Cadena Espejo ASTRELIA" />
+          <button class="quick-view" type="button">Vista rápida</button>
+        </div>
+        <div class="product-info">
+          <p class="product-category">Cadenas</p>
+          <h3>Cadena Espejo</h3>
+          <p class="product-price">$100.000 COP</p>
+          <p style="margin-top: 12px; color: #cfc7be; font-size: 13px; line-height: 1.7;">
+            Cadena elaborada en oro laminado 18K con diseño de eslabón tipo C y acabado espejo de alta reflectividad.
+            Mide 45 centímetros de largo, una longitud ideal para usar en el cuello con caída clásica. Su tono dorado cálido es uniforme en toda la pieza,
+            ideal para exhibirla o entregarla como regalo y cuenta con garantía de 1 año contra cambio de color.
+          </p>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-image">
+          <img src="images/producto2.jpg" alt="Cadena Vintage ASTRELIA" />
+          <button class="quick-view" type="button">Vista rápida</button>
+        </div>
+        <div class="product-info">
+          <p class="product-category">Cadenas</p>
+          <h3>Cadena Vintage</h3>
+          <p class="product-price">$90.000 COP</p>
+          <p style="margin-top: 12px; color: #cfc7be; font-size: 13px; line-height: 1.7;">
+            Cadena Vintage de 1.1 mm y 45 cm de largo, elaborada en oro laminado 18K. Presenta un diseño fino de caída clásica, tono dorado uniforme e incluye garantía de 1 año contra cambio de color.
+          </p>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-image">
+          <img src="images/producto3.jpg" alt="Cadena Singapur ASTRELIA" />
+          <button class="quick-view" type="button">Vista rápida</button>
+        </div>
+        <div class="product-info">
+          <p class="product-category">Cadenas</p>
+          <h3>Cadena Singapur</h3>
+          <p class="product-price">$100.000 COP</p>
+          <p style="margin-top: 12px; color: #cfc7be; font-size: 13px; line-height: 1.7;">
+            Cadena tipo Singapur IT de 1.2 mm y 45 cm de largo, elaborada en oro laminado 18K. Destaca por su brillo, caída clásica y tono dorado uniforme, e incluye garantía de 1 año contra cambio de color.
+          </p>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-image">
+          <img src="images/producto4.jpg" alt="Cadena Caracol Plana ASTRELIA" />
+          <button class="quick-view" type="button">Vista rápida</button>
+        </div>
+        <div class="product-info">
+          <p class="product-category">Cadenas</p>
+          <h3>Cadena Caracol Plana</h3>
+          <p class="product-price">$100.000 COP</p>
+          <p style="margin-top: 12px; color: #cfc7be; font-size: 13px; line-height: 1.7;">
+            Cadena de diseño plano con forma de caracol, elaborada en oro laminado 18K. 1.80 mm de grosor y mide 45 centímetros de largo y presenta un acabado brillante con tono dorado uniforme, e incluye garantía de 1 año contra cambio de color.
+          </p>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-image">
+          <img src="images/producto5.jpg" alt="Cadena Cubanita ASTRELIA" />
+          <button class="quick-view" type="button">Vista rápida</button>
+        </div>
+        <div class="product-info">
+          <p class="product-category">Cadenas</p>
+          <h3>Cadena Cubanita</h3>
+          <p class="product-price">$90.000 COP</p>
+          <p style="margin-top: 12px; color: #cfc7be; font-size: 13px; line-height: 1.7;">
+            Cadena tipo Cubanita IT de 1 mm de grosor y 45 cm de largo, elaborada en oro laminado 18K. Destaca por su diseño fino de caída clásica y tono dorado uniforme, e incluye garantía de 1 año contra cambio de color.
+          </p>
+        </div>
+      </article>
+    </div>
+
+    <div class="products-button">
+      <a href="#contacto" class="view-all">Ver toda la colección</a>
+    </div>
+  </section>
+
+  <section class="section" id="manillas">
+    <div class="section-header">
+      <p class="section-subtitle">Manillas</p>
+      <h2>Manillas tejidas</h2>
+      <p class="section-description">Diseños artesanales para llevar contigo todos los días.</p>
+    </div>
+
+    <div class="products-grid">
+      <article class="product-card">
+        <div class="product-image">
+          <span class="product-tag">Artesanal</span>
+          <img src="images/manilla1.jpg" alt="M.A01" />
+          <button class="quick-view" type="button">Vista rápida</button>
+        </div>
+        <div class="product-info">
+          <p class="product-category">Manillas</p>
+          <h3>M.A01</h3>
+          <p class="product-price">$85.000 COP</p>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-image">
+          <span class="product-tag">Favorita</span>
+          <img src="images/manilla2.jpg" alt="M.A02" />
+          <button class="quick-view" type="button">Vista rápida</button>
+        </div>
+        <div class="product-info">
+          <p class="product-category">Manillas</p>
+          <h3>M.A02</h3>
+          <p class="product-price">$110.000 COP</p>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-image">
+          <img src="images/manilla3.jpg" alt="M.A03" />
+          <button class="quick-view" type="button">Vista rápida</button>
+        </div>
+        <div class="product-info">
+          <p class="product-category">Manillas</p>
+          <h3>M.A03</h3>
+          <p class="product-price">$110.000 COP</p>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-image">
+          <img src="images/manilla4.jpg" alt="M.A04" />
+          <button class="quick-view" type="button">Vista rápida</button>
+        </div>
+        <div class="product-info">
+          <p class="product-category">Manillas</p>
+          <h3>M.A04</h3>
+          <p class="product-price">$135.000 COP</p>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-image">
+          <img src="images/manilla5.jpg" alt="M.A05" />
+          <button class="quick-view" type="button">Vista rápida</button>
+        </div>
+        <div class="product-info">
+          <p class="product-category">Manillas</p>
+          <h3>M.A05</h3>
+          <p class="product-price">$145.000 COP</p>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-image">
+          <img src="images/manilla6.jpg" alt="M.A06" />
+          <button class="quick-view" type="button">Vista rápida</button>
+        </div>
+        <div class="product-info">
+          <p class="product-category">Manillas</p>
+          <h3>M.A06</h3>
+          <p class="product-price">$55.000 COP</p>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-image">
+          <img src="images/manilla7.jpg" alt="M.A07" />
+          <button class="quick-view" type="button">Vista rápida</button>
+        </div>
+        <div class="product-info">
+          <p class="product-category">Manillas</p>
+          <h3>M.A07</h3>
+          <p class="product-price">$55.000 COP</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="dijes">
+    <div class="section-header">
+      <p class="section-subtitle">Dijes</p>
+      <h2>Dijes para llevar tu historia</h2>
+      <p class="section-description">Pequeños detalles que hacen única cada joya.</p>
+    </div>
+
+    <div class="products-grid">
+      <article class="product-card">
+        <div class="product-image">
+          <img src="images/dije1.jpg" alt="Dije Guadalupe Finita ASTRELIA" />
+          <button class="quick-view" type="button">Vista rápida</button>
+        </div>
+        <div class="product-info">
+          <p class="product-category">Dijes</p>
+          <h3>Dije Guadalupe Finita</h3>
+          <p class="product-price">$45.000 COP</p>
+          <p style="margin-top: 12px; color: #cfc7be; font-size: 13px; line-height: 1.7;">
+            Dije religioso de la Virgen de Guadalupe Finita, elaborado en oro laminado 18K. Presenta un diseño delicado con acabado detallado y tono dorado uniforme, ideal para combinar con tu cadena favorita o entregar como un regalo especial. Incluye garantía de 1 año contra cambio de color.
+          </p>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-image">
+          <img src="images/dije2.jpg" alt="Dije Little Star ASTRELIA" />
+          <button class="quick-view" type="button">Vista rápida</button>
+        </div>
+        <div class="product-info">
+          <p class="product-category">Dijes</p>
+          <h3>Dije Little Star</h3>
+          <p class="product-price">$45.000 COP</p>
+          <p style="margin-top: 12px; color: #cfc7be; font-size: 13px; line-height: 1.7;">
+            Dije Little Star, elaborado en oro laminado 18K. Presenta un diseño sutil y brillante con tono dorado uniforme, ideal para personalizar tu cadena o regalar. Incluye garantía de 1 año contra cambio de color.
+          </p>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-image">
+          <img src="images/dije3.jpg" alt="Dije Little Love ASTRELIA" />
+          <button class="quick-view" type="button">Vista rápida</button>
+        </div>
+        <div class="product-info">
+          <p class="product-category">Dijes</p>
+          <h3>Dije Little Love</h3>
+          <p class="product-price">$40.000 COP</p>
+          <p style="margin-top: 12px; color: #cfc7be; font-size: 13px; line-height: 1.7;">
+            Dije Little Love, elaborado en oro laminado 18K. Destaca por su diseño delicado y romántico con tono dorado uniforme, perfecto para usar todos los días. Incluye garantía de 1 año contra cambio de color.
+          </p>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-image">
+          <img src="images/dije4.jpg" alt="Dije Clover Sol ASTRELIA" />
+          <button class="quick-view" type="button">Vista rápida</button>
+        </div>
+        <div class="product-info">
+          <p class="product-category">Dijes</p>
+          <h3>Dije Clover Sol</h3>
+          <p class="product-price">$50.000 COP</p>
+          <p style="margin-top: 12px; color: #cfc7be; font-size: 13px; line-height: 1.7;">
+            Dije Clover Sol, elaborado en oro laminado 18K. Combina un estilo moderno y radiante con un tono dorado uniforme, ideal para dar un toque especial a tu cadena. Incluye garantía de 1 año contra cambio de color.
+          </p>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-image">
+          <img src="images/dije5.jpg" alt="Dije Guadalupe Cóncavo ASTRELIA" />
+          <button class="quick-view" type="button">Vista rápida</button>
+        </div>
+        <div class="product-info">
+          <p class="product-category">Dijes</p>
+          <h3>Dije Guadalupe Cóncavo</h3>
+          <p class="product-price">$45.000 COP</p>
+          <p style="margin-top: 12px; color: #cfc7be; font-size: 13px; line-height: 1.7;">
+            Dije religioso Guadalupe Cóncavo, elaborado en oro laminado 18K. Un símbolo de fe con diseño detallado y acabado cóncavo de tono dorado uniforme, perfecto como amuleto o regalo especial. Incluye garantía de 1 año contra cambio de color.
+          </p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="historia">
+    <div class="story">
+      <div class="story-art">
+        <img src="logo astrelia .jpeg" alt="Logo de ASTRELIA" />
+      </div>
+      <div>
+        <div class="section-header" style="text-align:left; margin-bottom:0;">
+          <p class="section-subtitle">Nuestra esencia</p>
+          <h2>No todas brillan de la misma manera.</h2>
+        </div>
+        <p>ASTRELIA nace para celebrar la forma única en que cada persona expresa su estilo. Cada joya busca acompañar momentos, detalles y recuerdos que merecen permanecer.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="banner" id="contacto">
+    <h2>Encuentra tu brillo.</h2>
+    <p>Conoce la colección y escríbenos para elegir tu pieza.</p>
+    <a class="cta" href="https://wa.me/573203026840?text=Hola%20quiero%20informacion%20sobre%20una%20joya">Comprar por WhatsApp</a>
+  </div>
+
+  <footer>
+    <b>✦ ASTRELIA</b><br><br>
+    Elegancia que trasciende · Colombia<br><br>
+    <div class="social-links">
+      <a href="https://www.instagram.com/joyeriaastrelia?igsi=MThveTMxMjkwZGFvag==" target="_blank" rel="noreferrer" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.5 5.5 0 0 1 12 7.5zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5zm5.25-3.25a1.25 1.25 0 1 1-1.25 1.25 1.25 1.25 0 0 1 1.25-1.25z"/></svg>
+      </a>
+      <a href="https://www.tiktok.com/@joyeria_astrelia?_r=1&_t=ZS-99RJXCkijq8" target="_blank" rel="noreferrer" aria-label="TikTok">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 3c.5 1.7 1.7 3 3.5 3.3v2.9c-1.5-.1-2.9-.7-4.1-1.7v6.8A5.6 5.6 0 1 1 10.3 9.1v2.8a2.8 2.8 0 1 0 2.1 2.7V3h4.1z"/></svg>
+      </a>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
